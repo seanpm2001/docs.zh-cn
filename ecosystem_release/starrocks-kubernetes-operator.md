@@ -18,19 +18,21 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 
 **资源下载地址:**
 
-- **前缀**
-  -  `https://github.com/StarRocks/starrocks-kubernetes-operator/releases/download/v``${operator_version}``/``${``resource_name``}`
+- **下载地址前缀**
+
+ `https://github.com/StarRocks/starrocks-kubernetes-operator/releases/download/v${operator_version}/${resource_name}`
+
 - **资源名称**
   - 定制资源 StarRocksCluster：**starrocks.com_starrocksclusters.yaml**
   - StarRocks Operator 默认配置文件：**operator.yaml**
-  - Helm Chart，包括 `kube-starrocks` **kube-starrocks-${chart_version}.tgz**。`kube-starrocks` Chart 还分两个子 Chart，`starrocks` **starrocks-****${chart_version}.tgz** 和 `operator` **operator****-****${chart_version}****.tgz**。
+  - Helm Chart，包括 `kube-starrocks` **kube-starrocks-${chart_version}.tgz**。`kube-starrocks` Chart 还分两个子 Chart，`starrocks` **starrocks-${chart_version}.tgz** 和 `operator` **operator-${chart_version}.tgz**。
 
-比如 1.8.4 版本 `kube-starrocks` Chart 的获取地址是：https://github.com/StarRocks/starrocks-kubernetes-operator/releases/download/v1.8.4/kube-starrocks-1.8.4.tgz
+比如 1.8.6 版本 `kube-starrocks` Chart 的获取地址是：[kube-starrocks](https://github.com/StarRocks/starrocks-kubernetes-operator/releases/download/v1.8.6/kube-starrocks-1.8.6.tgz)
 
 **版本要求**
 
 - Kubernetes：1.18 及以上
-- Go：1.19  及以上
+- Go：1.19 及以上
 
 ## 发布记录
 
@@ -54,7 +56,7 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 **功能改进**
 
 - **[Helm Chart] 支持为 Operator 的 service account  自定义注释和标签。**默认为 Operator 创建一个名为 `starrocks` 的 service account，用户可以通过在 **values.yaml** 文件中的 `serviceAccount` 中配置 `annotations` 和 `labels` 字段来自定义 service account `starrocks` 的注释和标签。`operator.global.rbac.serviceAccountName` 字段已被弃用。[#291](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/291)
-- **[Operator]**  **FE** **service 支持 Istio 的显式协议选择。**如果在 Kubernetes 环境中安装了 Istio，Istio 需要确定来自 StarRocks 集群的流量所使用的协议，以提供额外的功能，如路由和丰富的指标。因此， FE service 通过使用 `appProtocol` 字段显式声明其协议为 MySQL 协议。本改进尤为重要，因为 MySQL 协议是一种 server-first 协议，与自动协议检测不兼容，有时可能导致连接失败。[#288](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/288)
+- **[Operator] FE service 支持 Istio 的显式协议选择。**如果在 Kubernetes 环境中安装了 Istio，Istio 需要确定来自 StarRocks 集群的流量所使用的协议，以提供额外的功能，如路由和丰富的指标。因此， FE service 通过使用 `appProtocol` 字段显式声明其协议为 MySQL 协议。本改进尤为重要，因为 MySQL 协议是一种 server-first 协议，与自动协议检测不兼容，有时可能导致连接失败。[#288](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/288)
 
 **缺陷修复**
 
@@ -64,7 +66,7 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 
 **升级说明**
 
-- **[Helm Chart]** 当 `starrocks.starrocksCluster.name` 中指定的值与 `starrocks.nameOverride` 的值不同时，FE、BE 和 CN 的旧 `configmap` 会被删除，使用新名称的 `configmap` 会被创建。**这可能导致 FE/BE/CN** **pod** **重新启动****。**
+- **[Helm Chart]** 当 `starrocks.starrocksCluster.name` 中指定的值与 `starrocks.nameOverride` 的值不同时，FE、BE 和 CN 的旧 `configmap` 会被删除，使用新名称的 `configmap` 会被创建。**这可能导致 FE/BE/CN pod 重新启动。**
 
 **1.8.4**
 
@@ -91,7 +93,7 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 
 **升级说明**
 
-- **[Helm Chart]** 在默认的 **fe.conf** 文件中添加 `JAVA_OPTS_FOR_JDK_11` 。如果您使用了默认的 **fe.conf** 文件，则在升级到 v1.8.3 时，**会导致** **FE**  **Pod** **的****重启**。[#257](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/257)
+- **[Helm Chart]** 在默认的 **fe.conf** 文件中添加 `JAVA_OPTS_FOR_JDK_11` 。如果您使用了默认的 **fe.conf** 文件，则在升级到 v1.8.3 时，**会导致 FE Pod 的重启**。[#257](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/257)
 
 **新增特性**
 
@@ -131,19 +133,19 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 
     - 使用 **values migration tool** 调整以前的 **values.yaml** 文件的格式为新格式。不同操作系统的值迁移工具可以从 [Assets](https://github.com/StarRocks/starrocks-kubernetes-operator/releases/tag/v1.8.0) 部分下载。您可以通过运行 `migrate-chart-value --help` 命令来获取此工具的帮助信息。[#206](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/206)
 
-      1. ```Bash
+         ```Bash
          migrate-chart-value --input values.yaml --target-version v1.8.0 --output ./values-v1.8.0.yaml
          ```
 
     - 更新 Helm Chart 仓库。
 
-      1. ```Bash
+         ```Bash
          helm repo update;
          ```
 
     - 执行 `helm upgrade` 命令，使用调整后的 **values.yaml** 文件安装 Chart `kube-starrocks`。
 
-      1. ```Bash
+         ```Bash
          helm upgrade <release-name> starrocks-community/kube-starrocks -f values-v1.8.0.yaml
          ```
 
