@@ -20,7 +20,7 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 
 - **下载地址前缀**
 
- `https://github.com/StarRocks/starrocks-kubernetes-operator/releases/download/v${operator_version}/${resource_name}`
+   `https://github.com/StarRocks/starrocks-kubernetes-operator/releases/download/v${operator_version}/${resource_name}`
 
 - **资源名称**
   - 定制资源 StarRocksCluster：**starrocks.com_starrocksclusters.yaml**
@@ -55,8 +55,8 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 
 **功能改进**
 
-- **[Helm Chart] 支持为 Operator 的 service account  自定义注释和标签。**默认为 Operator 创建一个名为 `starrocks` 的 service account，用户可以通过在 **values.yaml** 文件中的 `serviceAccount` 中配置 `annotations` 和 `labels` 字段来自定义 service account `starrocks` 的注释和标签。`operator.global.rbac.serviceAccountName` 字段已被弃用。[#291](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/291)
-- **[Operator] FE service 支持 Istio 的显式协议选择。**如果在 Kubernetes 环境中安装了 Istio，Istio 需要确定来自 StarRocks 集群的流量所使用的协议，以提供额外的功能，如路由和丰富的指标。因此， FE service 通过使用 `appProtocol` 字段显式声明其协议为 MySQL 协议。本改进尤为重要，因为 MySQL 协议是一种 server-first 协议，与自动协议检测不兼容，有时可能导致连接失败。[#288](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/288)
+- **[Helm Chart]** **支持为 Operator 的 service account  自定义注释和标签。**默认为 Operator 创建一个名为 `starrocks` 的 service account，用户可以通过在 **values.yaml** 文件中的 `serviceAccount` 中配置 `annotations` 和 `labels` 字段来自定义 service account `starrocks` 的注释和标签。`operator.global.rbac.serviceAccountName` 字段已被弃用。[#291](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/291)
+- **[Operator]** **FE service 支持 Istio 的显式协议选择。**如果在 Kubernetes 环境中安装了 Istio，Istio 需要确定来自 StarRocks 集群的流量所使用的协议，以提供额外的功能，如路由和丰富的指标。因此， FE service 通过使用 `appProtocol` 字段显式声明其协议为 MySQL 协议。本改进尤为重要，因为 MySQL 协议是一种 server-first 协议，与自动协议检测不兼容，有时可能导致连接失败。[#288](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/288)
 
 **缺陷修复**
 
