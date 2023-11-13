@@ -131,19 +131,19 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 
   - 若要升级 Helm Chart，需要执行以下操作：
 
-    - 使用 **values migration tool** 调整以前的 **values.yaml** 文件的格式为新格式。不同操作系统的值迁移工具可以从 [Assets](https://github.com/StarRocks/starrocks-kubernetes-operator/releases/tag/v1.8.0) 部分下载。您可以通过运行 `migrate-chart-value --help` 命令来获取此工具的帮助信息。[#206](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/206)
+    1. 使用 **values migration tool** 调整以前的 **values.yaml** 文件的格式为新格式。不同操作系统的值迁移工具可以从 [Assets](https://github.com/StarRocks/starrocks-kubernetes-operator/releases/tag/v1.8.0) 部分下载。您可以通过运行 `migrate-chart-value --help` 命令来获取此工具的帮助信息。[#206](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/206)
 
          ```Bash
          migrate-chart-value --input values.yaml --target-version v1.8.0 --output ./values-v1.8.0.yaml
          ```
 
-    - 更新 Helm Chart 仓库。
+    2. 更新 Helm Chart 仓库。
 
          ```Bash
-         helm repo update;
+         helm repo update
          ```
 
-    - 执行 `helm upgrade` 命令，使用调整后的 **values.yaml** 文件安装 Chart `kube-starrocks`。
+    3. 执行 `helm upgrade` 命令，使用调整后的 **values.yaml** 文件安装 Chart `kube-starrocks`。
 
          ```Bash
          helm upgrade <release-name> starrocks-community/kube-starrocks -f values-v1.8.0.yaml
