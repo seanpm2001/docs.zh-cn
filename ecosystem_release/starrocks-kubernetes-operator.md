@@ -25,7 +25,7 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 - **资源名称**
   - 定制资源 StarRocksCluster：**starrocks.com_starrocksclusters.yaml**
   - StarRocks Operator 默认配置文件：**operator.yaml**
-  - Helm Chart，包括 `kube-starrocks` **kube-starrocks-${chart_version}.tgz**。`kube-starrocks` Chart 还分两个子 Chart，`starrocks` **starrocks-${chart_version}.tgz** 和 `operator` **operator-${chart_version}.tgz**。
+  - Helm Chart，包括 `kube-starrocks` Chart `kube-starrocks-${chart_version}.tgz`。`kube-starrocks` Chart 还分两个子 Chart，`starrocks` Chart `starrocks-${chart_version}.tgz` 和 `operator` Chart `operator-${chart_version}.tgz`。
 
 比如 1.8.6 版本 `kube-starrocks` Chart 的获取地址是：[kube-starrocks](https://github.com/StarRocks/starrocks-kubernetes-operator/releases/download/v1.8.6/kube-starrocks-1.8.6.tgz)
 
@@ -44,7 +44,7 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 
 已修复以下问题：
 
-在执行  Stream Load  作业时，返回错误 `sendfile() failed (32: Broken pipe) while sending request to upstream`。在 nginx 将请求体发送给 FE 后，FE 会将请求重定向到 BE。此时，nginx 中缓存的数据可能已经丢失。[#303](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/303)
+在执行  Stream Load  作业时，返回错误 `sendfile() failed (32: Broken pipe) while sending request to upstream`。在 Nginx 将请求体发送给 FE 后，FE 会将请求重定向到 BE。此时，Nginx 中缓存的数据可能已经丢失。[#303](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/303)
 
 **文档**
 
@@ -55,8 +55,8 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
 
 **功能改进**
 
-- **[Helm Chart]** **支持为 Operator 的 service account  自定义注释和标签。**默认为 Operator 创建一个名为 `starrocks` 的 service account，用户可以通过在 **values.yaml** 文件中的 `serviceAccount` 中配置 `annotations` 和 `labels` 字段来自定义 service account `starrocks` 的注释和标签。`operator.global.rbac.serviceAccountName` 字段已被弃用。[#291](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/291)
-- **[Operator]** **FE service 支持 Istio 的显式协议选择。**如果在 Kubernetes 环境中安装了 Istio，Istio 需要确定来自 StarRocks 集群的流量所使用的协议，以提供额外的功能，如路由和丰富的指标。因此， FE service 通过使用 `appProtocol` 字段显式声明其协议为 MySQL 协议。本改进尤为重要，因为 MySQL 协议是一种 server-first 协议，与自动协议检测不兼容，有时可能导致连接失败。[#288](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/288)
+- **[Helm Chart] 支持为 Operator 的 service account 自定义注释和标签**。默认为 Operator 创建一个名为 `starrocks` 的 service account，用户可以通过在 **values.yaml** 文件中的 `serviceAccount` 中配置 `annotations` 和 `labels` 字段来自定义 service account `starrocks` 的注释和标签。`operator.global.rbac.serviceAccountName` 字段已被弃用。[#291](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/291)
+- **[Operator] FE service 支持 Istio 的显式协议选择**。如果在 Kubernetes 环境中安装了 Istio，Istio 需要确定来自 StarRocks 集群的流量所使用的协议，以提供额外的功能，如路由和丰富的指标。因此， FE service 通过使用 `appProtocol` 字段显式声明其协议为 MySQL 协议。本改进尤为重要，因为 MySQL 协议是一种 server-first 协议，与自动协议检测不兼容，有时可能导致连接失败。[#288](https://github.com/StarRocks/starrocks-kubernetes-operator/pull/288)
 
 **缺陷修复**
 
