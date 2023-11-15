@@ -583,8 +583,6 @@
       + [map_keys](/sql-reference/sql-functions/map-functions/map_keys.md)
       + [map_size](/sql-reference/sql-functions/map-functions/map_size.md)
       + [map_values](/sql-reference/sql-functions/map-functions/map_values.md)
-      + [transform_keys](/sql-reference/sql-functions/map-functions/transform_keys.md)
-      + [transform_values](/sql-reference/sql-functions/map-functions/transform_values.md)
     + Bit 函数
       + [bitand](/sql-reference/sql-functions/bit-functions/bitand.md)
       + [bitnot](/sql-reference/sql-functions/bit-functions/bitnot.md)
