@@ -27,7 +27,9 @@ StarRocks 提供的 Operator 用于在 Kubernetes 环境中部署 StarRocks 集�
   - StarRocks Operator 默认配置文件：**operator.yaml**
   - Helm Chart，包括 `kube-starrocks` Chart `kube-starrocks-${chart_version}.tgz`。`kube-starrocks` Chart 还分两个子 Chart，`starrocks` Chart `starrocks-${chart_version}.tgz` 和 `operator` Chart `operator-${chart_version}.tgz`。
 
-比如 1.8.6 版本 `kube-starrocks` Chart 的获取地址是：[kube-starrocks](https://github.com/StarRocks/starrocks-kubernetes-operator/releases/download/v1.8.6/kube-starrocks-1.8.6.tgz)
+比如 1.8.6 版本 `kube-starrocks` Chart 的获取地址是：
+
+`https://github.com/StarRocks/starrocks-kubernetes-operator/releases/download/v1.8.6/kube-starrocks-1.8.6.tgz`
 
 **版本要求**
 
