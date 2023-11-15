@@ -1,4 +1,4 @@
-# Kafka connector 版本发布
+# StarRocks Connector for Kafka 版本发布
 
 ## 发布说明
 
@@ -18,7 +18,7 @@
 
 ### 1.0
 
-**1.0.0**
+#### 1.0.0
 
 发布日期：2023 年 6 月 25 日
 
