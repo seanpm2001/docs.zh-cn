@@ -165,7 +165,7 @@ REVOKE
 
 REVOKE
     { USAGE | ALTER | DROP | ALL [PRIVILEGES] } 
-    ON { STORAGE VOLUME < name > [, < name >,...] ｜ ALL STORAGE VOLUME} 
+    ON { STORAGE VOLUME < name > [, < name >,...] ｜ ALL STORAGE VOLUMES} 
     FROM { ROLE | USER} {<role_name>|<user_identity>}
 ```
 
