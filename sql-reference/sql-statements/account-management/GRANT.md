@@ -170,7 +170,7 @@ GRANT
 
 GRANT  
     { USAGE | ALTER | DROP | ALL [PRIVILEGES] } 
-    ON { STORAGE VOLUME < name > [, < name >,...] ｜ ALL STORAGE VOLUME} 
+    ON { STORAGE VOLUME < name > [, < name >,...] ｜ ALL STORAGE VOLUMES } 
     TO { ROLE | USER} {<role_name>|<user_identity>} [ WITH GRANT OPTION ]
 ```
 
